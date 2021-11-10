@@ -1,18 +1,18 @@
 import css from "./Profile.module.css";
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+
 
 
 const Profile = () => {
     return (
-        <div className>
-            <img src="https://klike.net/uploads/posts/2019-05/1556708032_1.jpg" alt="no"/>
-            <div>
-                ava + desc
-            </div>
+        <div>
+            <ProfileInfo/>
             <MyPosts/>
         </div>
     );
 };
+
 
 
 export default Profile;
