@@ -1,3 +1,8 @@
+import profileReducer from "./profile.reducer";
+import dialogsReducer from "./dialogs.reducer";
+
+
+
 const store = {
     _state:  {
         profilePage: {
@@ -5,7 +10,7 @@ const store = {
                 {id: 1, name: "gubich", message: 'Hi, how are you?', likesCount: 12},
                 {id: 2, name: "alich", message: 'It\'s my first post', likesCount: 11}
             ],
-            newPostText: "textNewPost"  // TODO мне не нравится что тут создаются поля для UI (это используется в MyPosts)
+            newPostText: ""  // TODO мне не нравится что тут создаются поля для UI (это используется в MyPosts)
         },
         dialogsPage: {
             dialogs: [
@@ -22,11 +27,12 @@ const store = {
                 {id: 3, message: 'Yo'},
                 {id: 4, message: 'Yo'},
                 {id: 5, message: 'Yo'}
-            ]
+            ],
+            newMessageText: ""
         },
     },
 
-    _callSubscriber () {
+    _callSubscriber() {
         console.log('State changed');
     },
 
@@ -34,27 +40,15 @@ const store = {
         return this._state;
     },
 
-    addPost() {
-        const newPost = {
-            id: 5,
-            name: "дядя боря",
-            message: this._state.profilePage.newPostText,
-            likesCount: 0
-        };
-
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = "";
-        this._callSubscriber(this);
-    },
-
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this);
-    },
-
     subscribe(observer) {
         this._callSubscriber = observer;
-    }
+    },
+
+    dispatch(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._callSubscriber(this._state);
+    },
 };
 
 

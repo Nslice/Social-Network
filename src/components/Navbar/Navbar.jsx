@@ -17,7 +17,7 @@ const Navbar = (props) => {
                 <NavLinkV5Style to="/news" activeClassName={css.activeLink}>News</NavLinkV5Style>
             </div>
             <div className={css.item}>
-                <NavLinkV5Style to="/news/3" activeClassName={css.activeLink}>Music</NavLinkV5Style>
+                <NavLinkV5Style to="/music" activeClassName={css.activeLink}>Music</NavLinkV5Style>
             </div>
             <div className={css.item}>
                 <NavLinkV5Style to="/settings" activeClassName={css.activeLink}>Settings</NavLinkV5Style>
@@ -25,6 +25,7 @@ const Navbar = (props) => {
         </nav>
     );
 };
+
 
 
 export default Navbar;

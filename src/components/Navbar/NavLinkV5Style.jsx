@@ -2,6 +2,7 @@ import * as React from "react";
 import {NavLink} from "react-router-dom"
 
 
+
 // TODO: надо разобраться со структурой проектов React, и перенести этот модуль куда-нибудь
 // по смыслу это глобальный кастомный компонент доступный во всем проекте для JSX
 
@@ -20,6 +21,7 @@ const navLinkWrapper = ({activeClassName, ...props}, ref) => {
 };
 
 const NavLinkV5Style = React.forwardRef(navLinkWrapper);
+
 
 
 export default NavLinkV5Style;

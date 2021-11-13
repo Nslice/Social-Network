@@ -1,6 +1,7 @@
 import css from "./News.module.css";
 
 
+
 const News = (props) => {
     return    (
         <div>
@@ -8,6 +9,7 @@ const News = (props) => {
         </div>
     );
 };
+
 
 
 export default News;

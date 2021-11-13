@@ -8,18 +8,19 @@ import store from "./redux/state";
 
 
 
-const renderUI = (store) => {
+
+const renderUI = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App store={store}/>
+                <App state={state} dispatch={store.dispatch.bind(store)}/>
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')
     );
 };
 
-renderUI(store);
+renderUI(store.getState());
 store.subscribe(renderUI);
 
 
