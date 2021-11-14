@@ -16,11 +16,22 @@
 
 }
 
-.messages {
+.messageBlock {
     padding: 10px;
 }
 
-.messages .message {
+.messageBlock .inputBlock {
+    margin-top: 5px;
+}
+
+.messageBlock .message {
     color: white;
 
+}
+
+
+.textField {
+    /*padding: 10px;*/
+    margin-top: 20px;
+    background: white;
 }

@@ -8,8 +8,8 @@ import store from "./redux/state";
 
 
 
-
 const renderUI = (state) => {
+    console.log("Render ReactDOM");
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
