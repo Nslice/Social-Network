@@ -63,7 +63,7 @@ const Dialogs = (props) => {
                         <Button onClick={onSendMessageClick}
                                 color="secondary"
                                 variant="contained"
-                                style={{"margin-top": "5px"}}
+                                style={{"marginTop": "5px"}}
                                 endIcon={<KeyboardArrowRightIcon/>}
                         >Send</Button>
                     </div>

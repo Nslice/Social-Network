@@ -10,6 +10,7 @@ import Settings from "./components/Settings/Settings";
 
 
 const App = (props) => {
+    console.log("Rendered App");
     return (
         <div className="app-wrapper">
             <Header/>
