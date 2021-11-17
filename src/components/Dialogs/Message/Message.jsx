@@ -1,4 +1,4 @@
-import css from "../Dialogs.module.css";
+import css from "./Message.module.css";
 
 
 

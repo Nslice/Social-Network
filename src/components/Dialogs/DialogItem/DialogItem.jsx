@@ -1,13 +1,13 @@
-import css from "../Dialogs.module.css";
+import css from "./DialogItem.module.css";
 import NavLinkV5Style from "../../Navbar/NavLinkV5Style";
 
 
 
-const DialogItem = (props) => {
-    const path = `/dialogs/${props.id}`;
+const DialogItem = ({id, name}) => {
+    const path = `/dialogs/${id}`;
     return (
-        <div className={`${css.dialog} ${css.active}`}>
-            <NavLinkV5Style to={path}>{props.name}</NavLinkV5Style>
+        <div className={css.item}>
+            <NavLinkV5Style to={path} activeClassName={css.activeLink}>{name}</NavLinkV5Style>
         </div>
     );
 };

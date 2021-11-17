@@ -5,58 +5,53 @@ import TextField from "@mui/material/TextField";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {addMessageActionCreator, updateNewMessageBodyActionCreator} from "../../redux/dialogs.reducer";
 
 
 
 const Dialogs = (props) => {
-    console.log("Rendered Dialogs");
-
-    const dialogs = props.dialogsPage.dialogs.map(x => <DialogItem id={x.id} name={x.name}/>);
-    const messages = props.dialogsPage.messages.map(x => <Message message={x.message}/>);
-
-    const texMessageElement = React.createRef();
+    const textMessageElement = React.createRef();
     const [isError, setIsError] = React.useState(false);
 
 
     const onSendMessageClick = () => {
         setIsError(false);
-
-        const text = texMessageElement.current.value;
+        const text = textMessageElement.current.value;
         if (!text) {
             setIsError(true)
             return;
         }
-        props.dispatch(addMessageActionCreator());
+        props.addMessage();
     };
 
     const onMessageChange = (e) => {
         const text = e.target.value;
-        props.dispatch(updateNewMessageBodyActionCreator(text));
+        props.updateNewMessageText(text);
     };
+
+    const dialogElements = props.dialogs.map(x => <DialogItem id={x.id} name={x.name}/>);
+    const messageElements = props.messages.map(x => <Message message={x.message}/>);
 
 
     return (
         <div className={css.dialogs}>
             <div className={css.dialogItems}>
-                {dialogs}
+                {dialogElements}
             </div>
             <div className={css.messageBlock}>
-                <div>{messages}</div>
+                <div>{messageElements}</div>
                 <div className={css.inputBlock}>
                     <div>
-                        <TextField
-                            className={css.textField}
-                            inputRef={texMessageElement}
-                            fullWidth
-                            multiline
-                            maxRows={4}
-                            variant="filled"
-                            label="Message"
-                            value={props.dialogsPage.newMessageText}
-                            onChange={onMessageChange}
-                            error={isError}
-                            helperText={isError ? "Empty field" : null}
+                        <TextField className={css.textField}
+                                   inputRef={textMessageElement}
+                                   fullWidth
+                                   multiline
+                                   maxRows={4}
+                                   variant="filled"
+                                   label="Message"
+                                   value={props.newMessageText}
+                                   onChange={onMessageChange}
+                                   error={isError}
+                                   helperText={isError ? "Empty message" : null}
                         />
                     </div>
                     <div>
@@ -64,8 +59,9 @@ const Dialogs = (props) => {
                                 color="secondary"
                                 variant="contained"
                                 style={{"marginTop": "5px"}}
-                                endIcon={<KeyboardArrowRightIcon/>}
-                        >Send</Button>
+                                endIcon={<KeyboardArrowRightIcon/>}>
+                            Send
+                        </Button>
                     </div>
                 </div>
             </div>

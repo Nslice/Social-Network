@@ -7,25 +7,22 @@ import App from "./App";
 import store from "./redux/redux-store";
 
 
-console.log(`store = ${store}`);
 
-
-const renderUI = (state) => {
-    console.log("Render ReactDOM");
-
-
+const renderUI = () => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={state} dispatch={store.dispatch.bind(store)}/>
+                <App store={store}/>
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById("root")
     );
 };
 
-renderUI(store.getState());
-store.subscribe(() => renderUI(store.getState()));
+
+renderUI();
+store.subscribe(() => renderUI());
+
 
 
 // If you want to start measuring performance in your app, pass a function

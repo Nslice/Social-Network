@@ -1,3 +1,7 @@
-.descriptionBlock {
+.profileInfo {
+    padding: 10px;
+}
+
+.profileInfo .descriptionBlock {
     padding: 10px;
 }

@@ -4,7 +4,7 @@ import css from "./ProfileInfo.module.css";
 
 const ProfileInfo = () => {
     return (
-        <div>
+        <div className={css.profileInfo}>
             <div>
                 <img src="https://klike.net/uploads/posts/2019-05/1556708032_1.jpg" alt="no"/>
             </div>

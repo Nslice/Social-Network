@@ -2,6 +2,11 @@
     padding: 10px;
 }
 
-.posts {
-    margin-top: 10px;
+.postsBlock .postItems {
+    margin-top: 20px;
+}
+
+.postsBlock .textField {
+    margin-top: 20px;
+    background: white;
 }

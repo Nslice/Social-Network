@@ -1,6 +1,7 @@
 import css from "./Settings.module.css";
 
 
+
 const Settings = (props) => {
     return    (
         <div>
@@ -8,6 +9,7 @@ const Settings = (props) => {
         </div>
     );
 };
+
 
 
 export default Settings;
