@@ -3,25 +3,26 @@ import reportWebVitals from './reportWebVitals';
 import ReactDOM from "react-dom";
 import React from "react";
 import {BrowserRouter} from "react-router-dom";
+import {Provider} from "react-redux";
 import App from "./App";
 import store from "./redux/redux-store";
 
 
 
-const renderUI = () => {
-    ReactDOM.render(
-        <React.StrictMode>
+ReactDOM.render(
+    <React.StrictMode>
+        <Provider store={store}>
             <BrowserRouter>
                 <App store={store}/>
             </BrowserRouter>
-        </React.StrictMode>,
-        document.getElementById("root")
-    );
-};
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById("root")
+);
 
 
-renderUI();
-store.subscribe(() => renderUI());
+window.store = store;
+
 
 
 
