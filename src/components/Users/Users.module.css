@@ -1,0 +1,27 @@
+.pages span {
+    padding: 4px;
+}
+
+.pages span:hover {
+    color: red;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.usersContainer {
+    padding-left: 5px;
+    padding-top: 10px;
+}
+
+.userContainer {
+    padding-top: 5px;
+}
+
+.userPhoto {
+    width: 100px;
+    height: 100px;
+}
+
+.selectedPage {
+    font-weight: bold;
+}

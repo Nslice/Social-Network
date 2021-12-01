@@ -1,4 +1,3 @@
-import css from "./News.module.css";
 
 
 

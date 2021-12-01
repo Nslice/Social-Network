@@ -20,6 +20,7 @@ const MyPosts = (props) => {
             return;
         }
         props.addPost();
+        textMessageElement.current.focus();
     };
 
     const onPostChange = (e) => {
@@ -28,7 +29,7 @@ const MyPosts = (props) => {
     };
 
     const postsElements = props.posts
-        .map(x => <Post name={x.name} message={x.message} likeCount={x.likesCount}/>);
+        .map(x => <Post key={x.id} name={x.name} message={x.message} likeCount={x.likesCount}/>);
 
 
     return (
@@ -38,22 +39,22 @@ const MyPosts = (props) => {
                 <div>
                     <TextField className={css.textField}
                                inputRef={textMessageElement}
-                               fullWidth
-                               multiline
-                               rows={3}
-                               variant="filled"
-                               label="Message"
                                value={props.newPostText}
                                onChange={onPostChange}
+                               fullWidth
+                               multiline
+                               minRows={3}
+                               maxRows={10}
+                               variant="filled"
+                               label="Message"
                                error={isError}
-                               helperText={isError ? "Empty message" : null}
-                    />
+                               helperText={isError ? "Empty message" : null}/>
                 </div>
                 <div>
                     <Button onClick={onAddPost}
                             color="secondary"
                             variant="contained"
-                            style={{"marginTop": "5px"}}
+                            style={{marginTop: "5px"}}
                             endIcon={<KeyboardArrowRightIcon/>}>
                         Add Post
                     </Button>

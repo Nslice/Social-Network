@@ -1,4 +1,3 @@
-import css from "./Settings.module.css";
 
 
 

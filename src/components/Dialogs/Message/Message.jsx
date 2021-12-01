@@ -2,10 +2,10 @@ import css from "./Message.module.css";
 
 
 
-const Message = (props) => {
+const Message = ({message}) => {
     return (
         <div className={css.message}>
-            {props.message}
+            {message}
         </div>
     );
 };
