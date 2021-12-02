@@ -1,9 +1,9 @@
-import css from "./MyPosts.module.css";
 import React from "react";
 import Button from '@mui/material/Button';
 import TextField from "@mui/material/TextField";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import Post from "./Post/Post";
+import css from "./MyPosts.module.css";
 
 
 

@@ -1,5 +1,5 @@
+import NavLinkV5Style from "../common/NavLinkV5Style/NavLinkV5Style";
 import css from "./Navbar.module.css";
-import NavLinkV5Style from "./NavLinkV5Style";
 
 
 

@@ -1,4 +1,3 @@
-import './App.css';
 import {Navigate, Route, Routes} from "react-router-dom";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
@@ -8,11 +7,12 @@ import UsersContainer from "./components/Users/UsersContainer";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
+import './App.css';
 
 
 
 const App = () => {
-    console.log("Rendered App");
+    console.log("Rendering App");
 
     return (
         <div className="app-wrapper">

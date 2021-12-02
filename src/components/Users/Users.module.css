@@ -2,11 +2,16 @@
     padding: 4px;
 }
 
-.pages span:hover {
+.pages :not(span.selectedPage):hover {
     color: red;
     cursor: pointer;
     padding: 10px;
 }
+
+.selectedPage {
+    font-weight: bold;
+}
+
 
 .usersContainer {
     padding-left: 5px;
@@ -20,8 +25,4 @@
 .userPhoto {
     width: 100px;
     height: 100px;
-}
-
-.selectedPage {
-    font-weight: bold;
 }

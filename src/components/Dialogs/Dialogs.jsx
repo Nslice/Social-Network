@@ -2,9 +2,9 @@ import React from "react";
 import Button from '@mui/material/Button';
 import TextField from "@mui/material/TextField";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import css from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import css from "./Dialogs.module.css";
 
 
 

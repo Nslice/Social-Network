@@ -1,5 +1,5 @@
+import NavLinkV5Style from "../../common/NavLinkV5Style/NavLinkV5Style";
 import css from "./DialogItem.module.css";
-import NavLinkV5Style from "../../Navbar/NavLinkV5Style";
 
 
 

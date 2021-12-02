@@ -1,12 +1,13 @@
-import * as React from "react";
+import React from "react";
 import {NavLink} from "react-router-dom"
 
 
 
-// TODO: надо разобраться со структурой проектов React, и перенести этот модуль куда-нибудь
-// по смыслу это глобальный кастомный компонент доступный во всем проекте для JSX
-
-// Для того чтобы подписать активной ссылко класс из CSS модуля
+/**
+ * Для того чтобы подписать активной ссылке класс из CSS модуля, как это работало в reacr-router-dom 5
+ * @param activeClassName
+ * @return {JSX.Element}
+ */
 const navLinkWrapper = ({activeClassName, ...props}, ref) => {
     return (
         <NavLink
