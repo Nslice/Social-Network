@@ -7,7 +7,7 @@ const Navbar = () => {
     return (
         <nav className={css.nav}>
             <div className={css.item}>
-                <NavLinkV5Style to="/profile" activeClassName={css.activeLink}>Profile</NavLinkV5Style>
+                <NavLinkV5Style to="/profile/2" activeClassName={css.activeLink}>Profile</NavLinkV5Style>
             </div>
             <div className={css.item}>
                 <NavLinkV5Style to="/dialogs" activeClassName={css.activeLink}>Messages</NavLinkV5Style>

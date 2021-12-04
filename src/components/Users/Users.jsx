@@ -1,3 +1,4 @@
+import {NavLink} from "react-router-dom";
 import Preloader from "../common/Preloader/Preloader"
 import css from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png";
@@ -34,7 +35,9 @@ const Users = (props) => {
                         <div className={css.userContainer} key={x.id}>
                             <div>
                                 <div>
-                                    <img src={x?.photos?.small ?? userPhoto} className={css.userPhoto} alt="no"/>
+                                    <NavLink to={`/profile/${x.id}`}>
+                                        <img src={x.photos?.small ?? userPhoto} className={css.userPhoto} alt="no"/>
+                                    </NavLink>
                                 </div>
                                 <div>
                                     {

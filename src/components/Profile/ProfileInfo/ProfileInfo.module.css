@@ -5,3 +5,8 @@
 .profileInfo .descriptionBlock {
     padding: 10px;
 }
+
+.mainPhoto img {
+    width: 30%;
+    height: 30%;
+}

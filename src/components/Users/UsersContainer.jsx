@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import axios from "axios";
 import {
     follow,
     unfollow,
@@ -8,7 +9,6 @@ import {
     setTotalUsersCount,
     setIsFetching
 } from "../../redux/users.reducer";
-import axios from "axios";
 import Users from "./Users";
 
 
@@ -43,6 +43,7 @@ class UsersContainer extends React.Component {
             })
             .catch((err) => {
                 console.log(err);
+                this.props.setIsFetching(false);
             });
     }
 
@@ -58,6 +59,7 @@ class UsersContainer extends React.Component {
                 })
                 .catch((err) => {
                     console.log(err);
+                    this.props.setIsFetching(false);
                 });
         }
     }
@@ -67,7 +69,9 @@ class UsersContainer extends React.Component {
      */
     queryForUsers() {
         const url = "https://social-network.samuraijs.com/api/1.0";
-        return axios.get(`${url}/users?page=${this.props.currentPage}&count=${this.props.pageSize}`);
+        return axios.get(
+            `${url}/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
+            {timeout: 10_000});
     }
 
     render() {

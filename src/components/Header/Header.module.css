@@ -1,11 +1,28 @@
 .header {
     grid-area: h;
 
-    display: grid;
+    /*display: grid;*/
     background-color: green;
 }
 
 .header img {
     width: 70px;
     align-self: center;
+    padding-top: 5px;
+}
+
+.loginBlock {
+    float: right;
+    padding-right: 5px;
+}
+
+.loginBlock a {
+    color: white;
+    text-decoration: none;
+}
+
+.loginBlock a:hover {
+    color: red;
+    cursor: pointer;
+    text-decoration: none;
 }

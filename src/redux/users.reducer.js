@@ -6,7 +6,6 @@ const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const SET_IS_FETCHING = "SET_IS_FETCHING";
 
 
-
 const initialState = {
     users: [],
     pageSize: 50,
