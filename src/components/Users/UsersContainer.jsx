@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import axios from "axios";
+import {userApi} from "../../api/api";
 import {
     follow,
     unfollow,
@@ -28,7 +28,7 @@ class UsersContainer extends React.Component {
         console.log("UsersContainer.componentWillUnmount");
     }
 
-    onPageChanged = (pageNumber) => {
+    onPageChanged = pageNumber => {
         if (pageNumber === this.props.currentPage || this.props.isFetching)
             return;
 
@@ -36,42 +36,50 @@ class UsersContainer extends React.Component {
         this.props.setCurrentPage(pageNumber);
         this.props.setUsers([]);
 
-        this.queryForUsers()
-            .then(response => {
-                this.props.setUsers(response.data.items)
-                this.props.setIsFetching(false);
-            })
-            .catch((err) => {
-                console.log(err);
-                this.props.setIsFetching(false);
-            });
+        userApi.getUsers(pageNumber, this.props.pageSize)
+            .then(data => this.props.setUsers(data.items))
+            .catch(console.log)
+            .finally(() => this.props.setIsFetching(false));
     }
 
     setUsers() {
         if (!this.props.users.length) {
             this.props.setIsFetching(true);
 
-            this.queryForUsers()
-                .then(response => {
-                    this.props.setUsers(response.data.items);
-                    this.props.setTotalUsersCount(response.data.totalCount);
-                    this.props.setIsFetching(false);
+            userApi.getUsers(this.props.currentPage, this.props.pageSize)
+                .then(data => {
+                    this.props.setUsers(data.items);
+                    this.props.setTotalUsersCount(data.totalCount);
                 })
-                .catch((err) => {
-                    console.log(err);
-                    this.props.setIsFetching(false);
-                });
+                .catch(console.log)
+                .finally(() => this.props.setIsFetching(false));
         }
     }
 
-    /**
-     * @return {Promise}
-     */
-    queryForUsers() {
-        const url = "https://social-network.samuraijs.com/api/1.0";
-        return axios.get(
-            `${url}/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
-            {timeout: 10_000});
+    follow = (userId) => {
+        if (this.props.isAuth) {
+            userApi.follow(userId)
+                .then(data => {
+                    if (data.resultCode === 0)
+                        this.props.follow(userId);
+                    else
+                        console.log(data.messages.join("\n"));
+                })
+                .catch(console.log);
+        }
+    }
+
+    unfollow = (userId) => {
+        if (this.props.isAuth) {
+            userApi.unfollow(userId)
+                .then(data => {
+                    if (data.resultCode === 0)
+                        this.props.unfollow(userId);
+                    else
+                        console.log(data.messages.join("\n"));
+                })
+                .catch(console.log);
+        }
     }
 
     render() {
@@ -82,8 +90,9 @@ class UsersContainer extends React.Component {
                    currentPage={this.props.currentPage}
                    isFetching={this.props.isFetching}
                    onPageChanged={this.onPageChanged}
-                   follow={this.props.follow}
-                   unfollow={this.props.unfollow}/>
+                   isAuth={this.props.isAuth}
+                   follow={this.follow}
+                   unfollow={this.unfollow}/>
         );
     }
 }
@@ -95,7 +104,8 @@ const mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        isAuth: state.auth.isAuth
     };
 };
 

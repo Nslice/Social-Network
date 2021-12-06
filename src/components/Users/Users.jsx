@@ -14,16 +14,18 @@ const Users = (props) => {
         <div>
             <div className={css.pages}>
                 {
-                    Array(pagesCount).fill(null).map((x, i) => {
-                        const pageNumber = i + 1;
-                        return (
-                            <span className={(props.currentPage === pageNumber) ? css.selectedPage : ""}
-                                  onClick={() => props.onPageChanged(pageNumber)}
-                                  key={pageNumber}>
-                                {pageNumber}
-                            </span>
-                        )
-                    })
+                    Array(pagesCount)
+                        .fill(null)
+                        .map((x, i) => {
+                            const pageNumber = i + 1;
+                            return (
+                                <span className={(props.currentPage === pageNumber) ? css.selectedPage : ""}
+                                      onClick={() => props.onPageChanged(pageNumber)}
+                                      key={pageNumber}>
+                                    {pageNumber}
+                                </span>
+                            );
+                        })
                 }
             </div>
 
@@ -63,7 +65,7 @@ const Users = (props) => {
             </div>
         </div>
     );
-}
+};
 
 
 

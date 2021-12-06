@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import axios from "axios";
+import {userApi} from "../../api/api";
 import {useParams} from "react-router-dom";
 import {setUserProfile} from "../../redux/profile.reducer";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
@@ -26,39 +26,25 @@ class ProfileContainer extends React.Component {
     componentDidMount() {
         console.log("ProfileContainer.componentDidMount");
         if (this.props.params.profileId !== this.props.profile?.userId) {
-            this.queryForProfile()
-                .then(response => {
-                    this.props.setUserProfile(response.data)
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+            userApi.getUserProfile(this.props.params.profileId)
+                .then(data => this.props.setUserProfile(data))
+                .catch(console.log);
         }
     }
 
     componentWillUnmount() {
         console.log("ProfileContainer.componentWillUnmount");
-        // this.props.setUserProfile(null);
+        this.props.setUserProfile(null);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log("ProfileContainer.componentDidUpdate");
         if (prevProps.params.profileId !== this.props.params.profileId) {
-            this.queryForProfile()
-                .then(response => {
-                    this.props.setUserProfile(response.data)
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+            userApi.getUserProfile(this.props.params.profileId)
+                .then(data => this.props.setUserProfile(data))
+                .catch(console.log);
         }
     }
-
-    queryForProfile() {
-        const url = "https://social-network.samuraijs.com/api/1.0";
-        return axios.get(`${url}/profile/${this.props.params.profileId}`);
-    }
-
 
     render() {
         return (
@@ -69,7 +55,6 @@ class ProfileContainer extends React.Component {
         );
     }
 }
-
 
 
 const mapStateToProps = (state) => {
