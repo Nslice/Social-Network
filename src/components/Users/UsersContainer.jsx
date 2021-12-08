@@ -1,13 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
-import {userApi} from "../../api/api";
 import {
-    follow,
-    unfollow,
-    setUsers,
     setCurrentPage,
-    setTotalUsersCount,
-    setIsFetching
+    getUsers,
+    followUser,
+    unfollowUser
 } from "../../redux/users.reducer";
 import Users from "./Users";
 
@@ -21,7 +18,8 @@ class UsersContainer extends React.Component {
 
     componentDidMount() {
         console.log("UsersContainer.componentDidMount");
-        this.setUsers();
+        if (!this.props.users.length)
+            this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
     componentWillUnmount() {
@@ -31,91 +29,49 @@ class UsersContainer extends React.Component {
     onPageChanged = pageNumber => {
         if (pageNumber === this.props.currentPage || this.props.isFetching)
             return;
-
-        this.props.setIsFetching(true);
         this.props.setCurrentPage(pageNumber);
-        this.props.setUsers([]);
-
-        userApi.getUsers(pageNumber, this.props.pageSize)
-            .then(data => this.props.setUsers(data.items))
-            .catch(console.log)
-            .finally(() => this.props.setIsFetching(false));
-    }
-
-    setUsers() {
-        if (!this.props.users.length) {
-            this.props.setIsFetching(true);
-
-            userApi.getUsers(this.props.currentPage, this.props.pageSize)
-                .then(data => {
-                    this.props.setUsers(data.items);
-                    this.props.setTotalUsersCount(data.totalCount);
-                })
-                .catch(console.log)
-                .finally(() => this.props.setIsFetching(false));
-        }
-    }
-
-    follow = (userId) => {
-        if (this.props.isAuth) {
-            userApi.follow(userId)
-                .then(data => {
-                    if (data.resultCode === 0)
-                        this.props.follow(userId);
-                    else
-                        console.log(data.messages.join("\n"));
-                })
-                .catch(console.log);
-        }
-    }
-
-    unfollow = (userId) => {
-        if (this.props.isAuth) {
-            userApi.unfollow(userId)
-                .then(data => {
-                    if (data.resultCode === 0)
-                        this.props.unfollow(userId);
-                    else
-                        console.log(data.messages.join("\n"));
-                })
-                .catch(console.log);
-        }
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
     render() {
         return (
-            <Users users={this.props.users}
-                   totalUsersCount={this.props.totalUsersCount}
-                   pageSize={this.props.pageSize}
-                   currentPage={this.props.currentPage}
-                   isFetching={this.props.isFetching}
-                   onPageChanged={this.onPageChanged}
-                   isAuth={this.props.isAuth}
-                   follow={this.follow}
-                   unfollow={this.unfollow}/>
+            <Users
+                page={{
+                    pageSize: this.props.pageSize,
+                    totalUsersCount: this.props.totalUsersCount,
+                    currentPage: this.props.currentPage,
+                    onPageChanged: this.onPageChanged
+                }}
+                userInterface={{
+                    users: this.props.users,
+                    follow: this.props.followUser,
+                    unfollow: this.props.unfollowUser,
+                    isFollowingProgress: this.props.isFollowingProgress
+                }}
+                isFetching={this.props.isFetching}
+                isAuth={this.props.isAuth}/>
         );
     }
 }
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        isAuth: state.auth.isAuth
+        isFollowingProgress: state.usersPage.isFollowingProgress,
+        isAuth: state.auth.isAuth,
     };
 };
 
 const mapDispatchToProps = {
-    follow,
-    unfollow,
-    setUsers,
     setCurrentPage,
-    setTotalUsersCount,
-    setIsFetching
+    getUsers,
+    followUser,
+    unfollowUser
 };
 
 

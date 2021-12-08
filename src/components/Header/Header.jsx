@@ -1,12 +1,14 @@
-import {NavLink} from "react-router-dom";
 import css from "./Header.module.css";
 
 
 
 const Header = ({isAuth, login}) => {
+    const redirectToApi = () => {
+        window.open("https://social-network.samuraijs.com/login", "_blank");
+    }
     const userButton = isAuth
         ? <span>{login}</span>
-        : <NavLink to={`/login`}>Login</NavLink>;
+        : <span onClick={redirectToApi}>Login</span>;
 
     return (
         <header className={css.header}>

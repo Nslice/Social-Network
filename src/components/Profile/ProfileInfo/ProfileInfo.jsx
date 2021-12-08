@@ -1,19 +1,17 @@
 import Preloader from "../../common/Preloader/Preloader";
 import css from "./ProfileInfo.module.css";
-import userPhoto from "../../../assets/images/user.png"
+import userDefaultPhoto from "../../../assets/images/user.png"
 
 
 
 const ProfileInfo = ({profile}) => {
     console.log("Rendering ProfileInfo");
 
-    if (!profile) {
+    if (!profile)
         return <Preloader visible={true}/>
-    }
 
-    const imgSrc = profile.photos?.large ?? userPhoto;
+    const imgSrc = profile.photos?.large ?? userDefaultPhoto;
     return (
-
         <div className={css.profileInfo}>
             <div className={css.mainPhoto}>
                 <img src={imgSrc} alt="no"/>

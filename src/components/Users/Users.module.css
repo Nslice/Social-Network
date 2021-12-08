@@ -2,7 +2,7 @@
     padding: 4px;
 }
 
-.pages :not(span.selectedPage):hover {
+.pages span:not(.selectedPage):hover {
     color: red;
     cursor: pointer;
     padding: 10px;

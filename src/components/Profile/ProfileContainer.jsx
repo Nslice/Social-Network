@@ -1,8 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import {userApi} from "../../api/api";
 import {useParams} from "react-router-dom";
-import {setUserProfile} from "../../redux/profile.reducer";
+import {loadUserProfile, setUserProfile} from "../../redux/profile.reducer";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer"
 
@@ -25,11 +24,8 @@ class ProfileContainer extends React.Component {
 
     componentDidMount() {
         console.log("ProfileContainer.componentDidMount");
-        if (this.props.params.profileId !== this.props.profile?.userId) {
-            userApi.getUserProfile(this.props.params.profileId)
-                .then(data => this.props.setUserProfile(data))
-                .catch(console.log);
-        }
+        if (this.props.params.profileId !== this.props.profile?.userId)
+            this.props.loadUserProfile(this.props.params.profileId);
     }
 
     componentWillUnmount() {
@@ -39,11 +35,8 @@ class ProfileContainer extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log("ProfileContainer.componentDidUpdate");
-        if (prevProps.params.profileId !== this.props.params.profileId) {
-            userApi.getUserProfile(this.props.params.profileId)
-                .then(data => this.props.setUserProfile(data))
-                .catch(console.log);
-        }
+        if (prevProps.params.profileId !== this.props.params.profileId)
+            this.props.loadUserProfile(this.props.params.profileId);
     }
 
     render() {
@@ -64,7 +57,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    setUserProfile
+    setUserProfile,
+    loadUserProfile
 };
 
 

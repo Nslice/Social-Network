@@ -1,4 +1,5 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore, compose} from "redux";
+import thunkMiddleWare from "redux-thunk";
 import profileReducer from "./profile.reducer";
 import dialogsReducer from "./dialogs.reducer";
 import usersReducer from "./users.reducer";
@@ -14,9 +15,18 @@ const reducers = combineReducers({
 });
 
 
-const store = createStore(reducers,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+// Подключение к плагину в бразуере Redux Devtools https://github.com/zalmoxisus/redux-devtools-extension
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+    })
+    : compose;
+
+const enhancer = composeEnhancers(
+    applyMiddleware(thunkMiddleWare)
 );
+
+const store = createStore(reducers, enhancer);
 
 
 

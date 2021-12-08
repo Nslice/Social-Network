@@ -16,12 +16,12 @@
     padding-right: 5px;
 }
 
-.loginBlock a {
+.loginBlock span {
     color: white;
     text-decoration: none;
 }
 
-.loginBlock a:hover {
+.loginBlock span:hover {
     color: red;
     cursor: pointer;
     text-decoration: none;
