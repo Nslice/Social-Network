@@ -1,12 +1,11 @@
-import Preloader from "../../common/Preloader/Preloader";
+import PropTypes from "prop-types";
+import {Preloader} from "components/common/Preloader";
 import css from "./ProfileInfo.module.css";
-import userDefaultPhoto from "../../../assets/images/user.png"
+import userDefaultPhoto from "assets/images/user.png"
 
 
 
-const ProfileInfo = ({profile}) => {
-    console.log("Rendering ProfileInfo");
-
+export const ProfileInfo = ({profile}) => {
     if (!profile)
         return <Preloader visible={true}/>
 
@@ -25,4 +24,13 @@ const ProfileInfo = ({profile}) => {
 };
 
 
-export default ProfileInfo;
+ProfileInfo.propTypes = {
+    profile: PropTypes.shape({
+        fullName: PropTypes.string,
+        aboutMe: PropTypes.string,
+        photos: PropTypes.shape({
+            small: PropTypes.string,
+            large: PropTypes.string
+        })
+    })
+};

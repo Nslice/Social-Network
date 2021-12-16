@@ -1,4 +1,4 @@
-import {userApi} from "../api/api";
+import {userApi} from "api/api";
 
 
 
@@ -21,7 +21,8 @@ const initialState = {
 };
 
 
-const usersReducer = (state = initialState, action) => {
+
+export const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -62,16 +63,14 @@ const usersReducer = (state = initialState, action) => {
 };
 
 
-
-export default usersReducer;
-
-export const follow = userId => ({type: FOLLOW, userId});
-export const unfollow = userId => ({type: UNFOLLOW, userId});
-export const setUsers = users => ({type: SET_USERS, users});
-export const setCurrentPage = pageNumber => ({type: SET_CURRENT_PAGE, pageNumber});
-export const setTotalUsersCount = count => ({type: SET_TOTAL_USERS_COUNT, count});
-export const setIsFetching = isFetching => ({type: SET_IS_FETCHING, isFetching});
+export const follow = (userId) => ({type: FOLLOW, userId});
+export const unfollow = (userId) => ({type: UNFOLLOW, userId});
+export const setUsers = (users) => ({type: SET_USERS, users});
+export const setCurrentPage = (pageNumber) => ({type: SET_CURRENT_PAGE, pageNumber});
+export const setTotalUsersCount = (count) => ({type: SET_TOTAL_USERS_COUNT, count});
+export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 export const setIsFollowingProgress = (inProgress, userId) => ({type: SET_IS_FOLLOWING_PROGRESS, inProgress, userId});
+
 
 /**
  * ThunkCreator
@@ -94,12 +93,13 @@ export const getUsers = (currentPage, pageSize) => {
     };
 }
 
+
 /**
  * ThunkCreator
  * @param {number} userId
  * @return {(function(dispatch, getState): void)} thunk, which send request on server to follow to user
  */
-export const followUser = userId => {
+export const followUser = (userId) => {
     return (dispatch, getState) => {
         const state = getState();
         if (state.auth.isAuth && !state.usersPage.isFollowingProgress.includes(userId)) {
@@ -117,6 +117,7 @@ export const followUser = userId => {
     };
 };
 
+
 /**
  * ThunkCreator
  * Отличается от {@link followUser} только диспатчем экшена, в будущем может быть разница, например
@@ -124,7 +125,7 @@ export const followUser = userId => {
  * @param {number} userId
  * @return {(function(dispatch, getState): void)} thunk, which send request on server to follow to user
  */
-export const unfollowUser = userId => {
+export const unfollowUser = (userId) => {
     return (dispatch, getState) => {
         const state = getState();
         if (state.auth.isAuth && !state.usersPage.isFollowingProgress.includes(userId)) {

@@ -16,13 +16,12 @@
     padding-right: 5px;
 }
 
-.loginBlock span {
+.loginBlock :where(span, a) {
     color: white;
     text-decoration: none;
 }
 
-.loginBlock span:hover {
+.loginBlock :where(span, a):hover {
     color: red;
     cursor: pointer;
-    text-decoration: none;
 }

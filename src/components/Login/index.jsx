@@ -1,0 +1,16 @@
+import css from "./Login.module.css";
+
+
+
+export const Login = () => {
+    const redirectToApi = () => {
+        window.open("https://social-network.samuraijs.com/login", "_blank");
+    };
+
+    return (
+        <div className={css.login}>
+            <div>Login</div>
+            <button onClick={redirectToApi}>login</button>
+        </div>
+    );
+};

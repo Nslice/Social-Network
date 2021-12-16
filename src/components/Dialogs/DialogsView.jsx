@@ -1,16 +1,15 @@
 import React from "react";
+import PropTypes from 'prop-types';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import Button from '@mui/material/Button';
 import TextField from "@mui/material/TextField";
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import DialogItem from "./DialogItem/DialogItem";
-import Message from "./Message/Message";
-import css from "./Dialogs.module.css";
+import {DialogItem} from "./DialogItem";
+import {Message} from "./Message";
+import css from "./DialogsView.module.css";
 
 
 
-const Dialogs = (props) => {
-    console.log("Rendering Dialogs");
-
+export const DialogsView = (props) => {
     const textMessageElement = React.createRef();
     const [isError, setIsError] = React.useState(false);
 
@@ -74,5 +73,12 @@ const Dialogs = (props) => {
 };
 
 
-
-export default Dialogs;
+DialogsView.propTypes = {
+    // state:
+    dialogs: PropTypes.array.isRequired,
+    messages: PropTypes.array.isRequired,
+    newMessageText: PropTypes.string.isRequired,
+    // dispatch:
+    addMessage: PropTypes.func.isRequired,
+    updateNewMessageText: PropTypes.func.isRequired
+};

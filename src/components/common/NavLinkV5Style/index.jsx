@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom"
 
 
 /**
- * Для того чтобы подписать активной ссылке класс из CSS модуля, как это работало в reacr-router-dom 5
+ * Для того чтобы подписать активной ссылке класс из CSS модуля, как это работало в react-router-dom 5
  * @param activeClassName
  * @return {JSX.Element}
  */
@@ -21,8 +21,6 @@ const navLinkWrapper = ({activeClassName, ...props}, ref) => {
     );
 };
 
-const NavLinkV5Style = React.forwardRef(navLinkWrapper);
 
 
-
-export default NavLinkV5Style;
+export const NavLinkV5Style = React.forwardRef(navLinkWrapper);

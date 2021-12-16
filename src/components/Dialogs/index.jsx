@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
-import {addMessage, updateNewMessageText} from "../../redux/dialogs.reducer";
-import Dialogs from "./Dialogs";
+import {addMessage, updateNewMessageText} from "redux/dialogs.reducer";
+import {DialogsView} from "./DialogsView";
 
 
 
@@ -19,4 +19,4 @@ const mapDispatchToProps = {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+export const Dialogs = connect(mapStateToProps, mapDispatchToProps)(DialogsView);

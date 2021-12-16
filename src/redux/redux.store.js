@@ -1,9 +1,9 @@
 import {applyMiddleware, combineReducers, createStore, compose} from "redux";
 import thunkMiddleWare from "redux-thunk";
-import profileReducer from "./profile.reducer";
-import dialogsReducer from "./dialogs.reducer";
-import usersReducer from "./users.reducer";
-import authReducer from "./auth.reducer";
+import {profileReducer} from "./profile.reducer";
+import {dialogsReducer} from "./dialogs.reducer";
+import {usersReducer} from "./users.reducer";
+import {authReducer} from "./auth.reducer";
 
 
 
@@ -26,8 +26,6 @@ const enhancer = composeEnhancers(
     applyMiddleware(thunkMiddleWare)
 );
 
-const store = createStore(reducers, enhancer);
 
 
-
-export default store;
+export const store = createStore(reducers, enhancer);

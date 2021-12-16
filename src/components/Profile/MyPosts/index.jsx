@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {addPost, updateNewPostText} from "../../../redux/profile.reducer";
-import MyPosts from "./MyPosts";
+import {MyPostsView} from "./MyPostsView";
 
 
 
@@ -18,4 +18,4 @@ const mapDispatchToProps = {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+export const MyPosts = connect(mapStateToProps, mapDispatchToProps)(MyPostsView);

@@ -1,19 +1,21 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {
     setCurrentPage,
     getUsers,
     followUser,
     unfollowUser
-} from "../../redux/users.reducer";
-import Users from "./Users";
+} from "redux/users.reducer";
+import {withAuthRedirect} from "hoc/withAuthRedirect";
+import {UsersView} from "./UsersView";
 
 
 
 class UsersContainer extends React.Component {
     constructor(props) {
-        console.log("UsersContainer.constructor");
         super(props);
+        this.onPageChanged = this.onPageChanged.bind(this);
     }
 
     componentDidMount() {
@@ -26,7 +28,7 @@ class UsersContainer extends React.Component {
         console.log("UsersContainer.componentWillUnmount");
     }
 
-    onPageChanged = pageNumber => {
+    onPageChanged(pageNumber) {
         if (pageNumber === this.props.currentPage || this.props.isFetching)
             return;
         this.props.setCurrentPage(pageNumber);
@@ -35,14 +37,14 @@ class UsersContainer extends React.Component {
 
     render() {
         return (
-            <Users
+            <UsersView
                 page={{
                     pageSize: this.props.pageSize,
                     totalUsersCount: this.props.totalUsersCount,
                     currentPage: this.props.currentPage,
                     onPageChanged: this.onPageChanged
                 }}
-                userInterface={{
+                userWrapper={{
                     users: this.props.users,
                     follow: this.props.followUser,
                     unfollow: this.props.unfollowUser,
@@ -55,7 +57,24 @@ class UsersContainer extends React.Component {
 }
 
 
-const mapStateToProps = state => {
+UsersContainer.propTypes = {
+    // state:
+    users: PropTypes.array.isRequired,
+    pageSize: PropTypes.number.isRequired,
+    totalUsersCount: PropTypes.number.isRequired,
+    currentPage: PropTypes.number.isRequired,
+    isFetching: PropTypes.bool.isRequired,
+    isFollowingProgress: PropTypes.arrayOf(PropTypes.number).isRequired,
+    isAuth: PropTypes.bool.isRequired,
+    // dispatch:
+    setCurrentPage: PropTypes.func.isRequired,
+    getUsers: PropTypes.func.isRequired,
+    followUser: PropTypes.func.isRequired,
+    unfollowUser: PropTypes.func.isRequired
+};
+
+
+const mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -76,4 +95,4 @@ const mapDispatchToProps = {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export const Users = connect(mapStateToProps, mapDispatchToProps)(withAuthRedirect(UsersContainer));

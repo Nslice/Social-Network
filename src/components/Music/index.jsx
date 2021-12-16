@@ -1,14 +1,7 @@
-
-
-
-const Music = (props) => {
+export const Music = () => {
     return    (
         <div>
             Music
         </div>
     );
 };
-
-
-
-export default Music;

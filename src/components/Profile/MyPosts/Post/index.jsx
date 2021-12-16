@@ -1,8 +1,16 @@
+import PropTypes from "prop-types";
 import css from "./Post.module.css"
 
 
 
-const Post = (props) => {
+/**
+ * @param {object} props - props
+ * @param {string} props.name
+ * @param {string} props.message
+ * @param {number} props.likeCount
+ * @return {JSX.Element}
+ */
+export const Post = (props) => {
     return (
         <div className={css.item}>
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsVh1gLWWiNKifedzR5UKnt2usBSWP2OWcZjuQ4byKVdpyLDpO9sUX1uVwXw_RaKt4a3s&usqp=CAU" alt="no gachimuchi"/>
@@ -12,9 +20,11 @@ const Post = (props) => {
             </div>
         </div>
     );
-
 };
 
 
-
-export default Post;
+Post.propTypes = {
+    name: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
+    likeCount: PropTypes.number.isRequired
+};

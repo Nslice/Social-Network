@@ -1,4 +1,4 @@
-import {userApi} from "../api/api";
+import {userApi} from "api/api";
 
 
 
@@ -18,7 +18,8 @@ const initialState = {
 };
 
 
-const profileReducer = (state = initialState, action) => {
+
+export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
             const newPost = {
@@ -42,19 +43,17 @@ const profileReducer = (state = initialState, action) => {
 };
 
 
-
-export default profileReducer;
-
 export const addPost = () => ({type: ADD_POST});
-export const updateNewPostText = text => ({type: UPDATE_NEW_POST_TEXT, text: text});
-export const setUserProfile = profile => ({type: SET_USER_PROFILE, profile});
+export const updateNewPostText = (text) => ({type: UPDATE_NEW_POST_TEXT, text: text});
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
+
 
 /**
  * ThunkCreator
  * @param {number} profileId
  * @return {(function(dispatch, getState): void)} thunk, which get and set profile info from server
  */
-export const loadUserProfile = (profileId) =>{
+export const loadUserProfile = (profileId) => {
     return (dispatch, getState) => {
         userApi.getUserProfile(profileId)
             .then(data => dispatch(setUserProfile(data)))

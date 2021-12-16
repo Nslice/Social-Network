@@ -1,31 +1,22 @@
+import PropTypes from "prop-types";
 import {NavLink} from "react-router-dom";
-import Preloader from "../common/Preloader/Preloader"
-import css from "./Users.module.css";
-import userPhoto from "../../assets/images/user.png";
+import {Preloader} from "components/common/Preloader"
+import css from "./UsersView.module.css";
+import userPhoto from "assets/images/user.png";
 
 
 
-/**
- * @param {object} obj - props
- * @param {object} obj.page
- * @param {object} obj.userInterface
- * @param {boolean} obj.isFetching
- * @param {boolean} obj.isAuth
- * @return {JSX.Element}
- */
-const Users = ({page, userInterface, isFetching, isAuth}) => {
-    console.log(`render ${Users.name}`);
-
-    const getButton = x => {
+export const UsersView = ({page, userWrapper, isFetching, isAuth}) => {
+    const getButton = (x) => {
         if (!isAuth)
             return null;
-        const isDisabled = userId => userInterface.isFollowingProgress.includes(userId);
+        const isDisabled = (userId) => userWrapper.isFollowingProgress.includes(userId);
         return (
             <div>
                 {
                     x.followed
-                        ? <button onClick={() => userInterface.unfollow(x.id)} disabled={isDisabled(x.id)}>Unfollow</button>
-                        : <button onClick={() => userInterface.follow(x.id)} disabled={isDisabled(x.id)}>Follow</button>
+                        ? <button onClick={() => userWrapper.unfollow(x.id)} disabled={isDisabled(x.id)}>Unfollow</button>
+                        : <button onClick={() => userWrapper.follow(x.id)} disabled={isDisabled(x.id)}>Follow</button>
                 }
             </div>
         );
@@ -39,7 +30,7 @@ const Users = ({page, userInterface, isFetching, isAuth}) => {
 
             <div className={css.usersContainer}>
                 {
-                    userInterface.users.map(x =>
+                    userWrapper.users.map(x =>
                         <div className={css.userContainer} key={x.id}>
                             <div>
                                 <div>
@@ -68,6 +59,24 @@ const Users = ({page, userInterface, isFetching, isAuth}) => {
 };
 
 
+UsersView.propTypes = {
+    page: PropTypes.shape({
+        pageSize: PropTypes.number.isRequired,
+        totalUsersCount: PropTypes.number.isRequired,
+        currentPage: PropTypes.number.isRequired,
+        onPageChanged: PropTypes.func.isRequired
+    }).isRequired,
+    userWrapper: PropTypes.shape({
+        users: PropTypes.array.isRequired,
+        follow: PropTypes.func.isRequired,
+        unfollow: PropTypes.func.isRequired,
+        isFollowingProgress: PropTypes.arrayOf(PropTypes.number).isRequired,
+    }),
+    isFetching: PropTypes.bool.isRequired,
+    isAuth: PropTypes.bool.isRequired
+};
+
+
 /**
  * @param {object} obj
  * @param {number} obj.totalUsersCount
@@ -78,7 +87,7 @@ const Users = ({page, userInterface, isFetching, isAuth}) => {
  */
 const PageSelector = ({totalUsersCount, pageSize, currentPage, onPageChanged}) => {
     const pagesCount = Math.min(Math.ceil(totalUsersCount / pageSize), 20);
-    console.log("Render PageSelector");
+
     return (
         <div className={css.pages}>
             {
@@ -98,7 +107,3 @@ const PageSelector = ({totalUsersCount, pageSize, currentPage, onPageChanged}) =
         </div>
     );
 };
-
-
-
-export default Users;

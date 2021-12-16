@@ -1,4 +1,4 @@
-import {userApi} from "../api/api";
+import {userApi} from "api/api";
 
 
 
@@ -13,7 +13,8 @@ const initialState = {
 };
 
 
-const authReducer = (state = initialState, action) => {
+
+export const authReducer = (state = initialState, action) => {
      switch (action.type) {
          case SET_USER_DATA:
              return {
@@ -26,9 +27,6 @@ const authReducer = (state = initialState, action) => {
      }
 };
 
-
-
-export default authReducer;
 
 /**
  * ActionCreator

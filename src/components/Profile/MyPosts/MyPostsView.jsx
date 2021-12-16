@@ -1,13 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Button from '@mui/material/Button';
 import TextField from "@mui/material/TextField";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import Post from "./Post/Post";
-import css from "./MyPosts.module.css";
+import {Post} from "./Post";
+import css from "./MyPostsView.module.css";
 
 
 
-const MyPosts = (props) => {
+export const MyPostsView = (props) => {
     const textMessageElement = React.createRef();
     const [isError, setIsError] = React.useState(false);
 
@@ -68,5 +69,17 @@ const MyPosts = (props) => {
 };
 
 
-
-export default MyPosts;
+MyPostsView.propTypes = {
+    // state:
+    posts: PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            name: PropTypes.string.isRequired,
+            message: PropTypes.string.isRequired,
+            likesCount: PropTypes.number.isRequired
+        })
+    ),
+    newPostText: PropTypes.string.isRequired,
+    // dispatch:
+    addPost: PropTypes.func.isRequired,
+    updateNewPostText: PropTypes.func.isRequired
+};

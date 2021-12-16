@@ -1,46 +1,36 @@
 import {Navigate, Route, Routes} from "react-router-dom";
-import HeaderContainer from "./components/Header/HeaderContainer";
-import Navbar from "./components/Navbar/Navbar";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import UsersContainer from "./components/Users/UsersContainer";
-import News from "./components/News/News";
-import Music from "./components/Music/Music";
-import Settings from "./components/Settings/Settings";
+import {Login} from "components/Login";
+import {Header} from "components/Header";
+import {Navbar} from "components/Navbar";
+import {Dialogs} from "components/Dialogs";
+import {Profile} from "components/Profile";
+import {Users} from "components/Users";
+import {News} from "components/News";
+import {Music} from "components/Music";
+import {Settings} from "components/Settings";
 import './App.css';
 
 
 
 const App = () => {
-    console.log("Rendering App");
-
     return (
         <div className="app-wrapper">
-            <HeaderContainer/>
+            <Header/>
             <Navbar/>
             <div className="app-wrapper-content">
                 <Routes>
-                    <Route path="/" element={<HomePage/>}/>
-                    <Route path="/dialogs" element={<DialogsContainer/>}>
-                        <Route path=":id" element={<DialogsContainer/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/dialogs" element={<Dialogs/>}>
+                        <Route path=":id" element={<Dialogs/>}/>
                     </Route>
-                    <Route path="/profile/:profileId" element={<ProfileContainer/>}/>
-                    <Route path="/users" element={<UsersContainer/>}/>
+                    <Route path="/profile/:profileId" element={<Profile/>}/>
+                    <Route path="/users" element={<Users/>}/>
                     <Route path="/news" element={<News/>}/>
                     <Route path="/music" element={<Music/>}/>
                     <Route path="/settings" element={<Settings/>}/>
                     {/*<Route path="/*" element={<Navigate to="/" replace/>}/>*/}
                 </Routes>
             </div>
-        </div>
-    );
-};
-
-
-const HomePage = () => {
-    return    (
-        <div>
-            HomePage
         </div>
     );
 };

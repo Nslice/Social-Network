@@ -1,14 +1,7 @@
-
-
-
-const News = (props) => {
+export const News = () => {
     return    (
         <div>
             News
         </div>
     );
 };
-
-
-
-export default News;

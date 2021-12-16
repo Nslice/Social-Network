@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import css from "./Message.module.css";
 
 
 
-const Message = ({message}) => {
+export const Message = ({message}) => {
     return (
         <div className={css.message}>
             {message}
@@ -11,5 +12,6 @@ const Message = ({message}) => {
 };
 
 
-
-export default Message;
+Message.propTypes = {
+    message: PropTypes.string.isRequired
+};

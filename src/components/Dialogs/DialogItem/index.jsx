@@ -1,9 +1,10 @@
-import NavLinkV5Style from "../../common/NavLinkV5Style/NavLinkV5Style";
+import PropTypes from "prop-types";
+import {NavLinkV5Style} from "components/common/NavLinkV5Style";
 import css from "./DialogItem.module.css";
 
 
 
-const DialogItem = ({id, name}) => {
+export const DialogItem = ({id, name}) => {
     const path = `/dialogs/${id}`;
     return (
         <div className={css.item}>
@@ -13,5 +14,7 @@ const DialogItem = ({id, name}) => {
 };
 
 
-
-export default DialogItem;
+DialogItem.propTypes = {
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired
+};
