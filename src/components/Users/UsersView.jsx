@@ -10,7 +10,7 @@ export const UsersView = ({page, userWrapper, isFetching, isAuth}) => {
     const getButton = (x) => {
         if (!isAuth)
             return null;
-        const isDisabled = (userId) => userWrapper.isFollowingProgress.includes(userId);
+        const isDisabled = (userId) => userWrapper.inFollowingProgress.includes(userId);
         return (
             <div>
                 {
@@ -70,7 +70,7 @@ UsersView.propTypes = {
         users: PropTypes.array.isRequired,
         follow: PropTypes.func.isRequired,
         unfollow: PropTypes.func.isRequired,
-        isFollowingProgress: PropTypes.arrayOf(PropTypes.number).isRequired,
+        inFollowingProgress: PropTypes.arrayOf(PropTypes.number).isRequired,
     }),
     isFetching: PropTypes.bool.isRequired,
     isAuth: PropTypes.bool.isRequired

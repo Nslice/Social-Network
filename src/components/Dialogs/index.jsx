@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {addMessage, updateNewMessageText} from "redux/dialogs.reducer";
+import {addMessage, updateNewMessageText} from "redux/actions/messageActions";
 import {DialogsView} from "./DialogsView";
 
 

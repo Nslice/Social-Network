@@ -1,18 +1,19 @@
 import {applyMiddleware, combineReducers, createStore, compose} from "redux";
 import thunkMiddleWare from "redux-thunk";
-import {profileReducer} from "./profile.reducer";
-import {dialogsReducer} from "./dialogs.reducer";
-import {usersReducer} from "./users.reducer";
-import {authReducer} from "./auth.reducer";
+import {profileReducer} from "./reducers/profile.reducer";
+import {dialogsReducer} from "./reducers/dialogs.reducer";
+import {authReducer} from "./reducers/auth.reducer";
+import {userPageReducer} from "./reducers/userPageReducer";
 
 
 
 const reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
-    usersPage: usersReducer,
+    usersPage: userPageReducer,
     auth: authReducer
 });
+
 
 
 // Подключение к плагину в бразуере Redux Devtools https://github.com/zalmoxisus/redux-devtools-extension

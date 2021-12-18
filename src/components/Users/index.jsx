@@ -1,13 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {
-    setCurrentPage,
-    getUsers,
-    followUser,
-    unfollowUser
-} from "redux/users.reducer";
 import {withAuthRedirect} from "hoc/withAuthRedirect";
+import {followUser, unfollowUser} from "redux/actions/userActions";
+import {setCurrentPage, getUsers} from "redux/actions/userPageActions";
 import {UsersView} from "./UsersView";
 
 
@@ -48,7 +44,7 @@ class UsersContainer extends React.Component {
                     users: this.props.users,
                     follow: this.props.followUser,
                     unfollow: this.props.unfollowUser,
-                    isFollowingProgress: this.props.isFollowingProgress
+                    inFollowingProgress: this.props.inFollowingProgress
                 }}
                 isFetching={this.props.isFetching}
                 isAuth={this.props.isAuth}/>
@@ -64,7 +60,7 @@ UsersContainer.propTypes = {
     totalUsersCount: PropTypes.number.isRequired,
     currentPage: PropTypes.number.isRequired,
     isFetching: PropTypes.bool.isRequired,
-    isFollowingProgress: PropTypes.arrayOf(PropTypes.number).isRequired,
+    inFollowingProgress: PropTypes.arrayOf(PropTypes.number).isRequired,
     isAuth: PropTypes.bool.isRequired,
     // dispatch:
     setCurrentPage: PropTypes.func.isRequired,
@@ -81,7 +77,7 @@ const mapStateToProps = (state) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        isFollowingProgress: state.usersPage.isFollowingProgress,
+        inFollowingProgress: state.usersPage.inFollowingProgress,
         isAuth: state.auth.isAuth,
     };
 };

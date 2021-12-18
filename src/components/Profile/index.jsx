@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import {compose} from "redux";
 import {connect} from "react-redux";
-import {loadUserProfile, setUserProfile} from "redux/profile.reducer";
 import {withAuthRedirect} from "hoc/withAuthRedirect";
 import {withRouter} from "hoc/withRouter";
+import {setUserProfile, loadUserProfile} from "redux/actions/profileActions";
 import {ProfileInfo} from "./ProfileInfo";
 import {MyPosts} from "./MyPosts"
 

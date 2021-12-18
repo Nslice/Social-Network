@@ -35,8 +35,19 @@ const unfollow = userId => {
         .then(response => response.data);
 };
 
-
-// TODO: это надо перенести в другой файл с API, типо authApi.js
+/**
+ * @typedef  AuthResponse
+ * @property {object} data
+ * @property {number} data.id
+ * @property {string} data.login
+ * @property {string} data.email
+ * @property {string[]} messages
+ * @property {string[]} fieldsErrors
+ * @property {number} resultCode
+ */
+/**
+ * @return {Promise<AuthResponse>}
+ */
 const authMe = () => {
     return instance.get(`/auth/me`)
         .then(response => response.data);

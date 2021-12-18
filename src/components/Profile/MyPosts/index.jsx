@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {addPost, updateNewPostText} from "../../../redux/profile.reducer";
+import {addPost, updateNewPostText} from "redux/actions/postActions";
 import {MyPostsView} from "./MyPostsView";
 
 
