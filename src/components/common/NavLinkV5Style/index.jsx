@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink} from "react-router-dom"
+import {NavLink} from "react-router-dom";
 
 
 
@@ -8,7 +8,7 @@ import {NavLink} from "react-router-dom"
  * @param activeClassName
  * @return {JSX.Element}
  */
-const navLinkWrapper = ({activeClassName, ...props}, ref) => {
+const NavLinkWrapper = ({activeClassName, ...props}, ref) => {
     return (
         <NavLink
             ref={ref}
@@ -22,5 +22,4 @@ const navLinkWrapper = ({activeClassName, ...props}, ref) => {
 };
 
 
-
-export const NavLinkV5Style = React.forwardRef(navLinkWrapper);
+export const NavLinkV5Style = React.forwardRef(NavLinkWrapper);

@@ -41,7 +41,7 @@ export const followUser = (userId) => {
  * Отличается от {@link followUser} только диспатчем экшена, в будущем может быть разница, например
  * при подписке уведмолять юзера, а при отписке нет
  * @param {number} userId
- * @return {(function(dispatch, getState): void)} thunk, which send request on server to follow to user
+ * @return {(function(dispatch, getState): void)} - thunk, which send request on server to follow to user
  */
 export const unfollowUser = (userId) => {
     return (dispatch, getState) => {

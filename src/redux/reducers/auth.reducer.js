@@ -28,9 +28,3 @@ export const authReducer = createReducer(initialState, (builder) => {
 });
 
 
-/* TODO:
- * https://social-network.samuraijs.com/signUp
- * login: talatrio312
- * email: trio.bone@gmail.com
- *  pass: 123
- */

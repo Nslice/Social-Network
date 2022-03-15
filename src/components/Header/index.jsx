@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import {authMe} from "redux/actions/authActions";
 import {HeaderView} from "./HeaderView";
 
@@ -19,6 +19,7 @@ class HeaderContainer extends React.Component {
 }
 
 
+
 HeaderContainer.propTypes = {
     // state:
     userId: PropTypes.number,
@@ -32,7 +33,7 @@ HeaderContainer.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        userId: state.auth.userId,
+        userId: state.auth.userId,  // TODO: зачем замапил это
         email: state.auth.email,
         login: state.auth.login,
         isAuth: state.auth.isAuth

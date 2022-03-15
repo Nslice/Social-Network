@@ -78,7 +78,7 @@ const mapStateToProps = (state) => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         inFollowingProgress: state.usersPage.inFollowingProgress,
-        isAuth: state.auth.isAuth,
+        isAuth: state.auth.isAuth
     };
 };
 

@@ -1,6 +1,13 @@
 import axios from "axios";
 
 
+/* TODO:
+ * https://social-network.samuraijs.com/signUp
+ * login: talatrio312
+ * email: trio.bone@gmail.com
+ *  pass: 123
+ */
+
 
 const instance = axios.create({
     baseURL: "https://social-network.samuraijs.com/api/1.0",

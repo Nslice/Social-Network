@@ -53,6 +53,20 @@ const mapDispatchToProps = {
     loadUserProfile
 };
 
+const myCompose = (...funcs) => {
+    if (funcs.length === 1) {
+        return funcs[0];
+    }
+    console.log(funcs);
+
+    return funcs.reduce((a, b) => {
+        console.log(a.name + "|" + b.name);
+        return (...args) => {
+            return a(b(...args))
+        };
+    });
+};
+
 
 
 export const Profile = compose(

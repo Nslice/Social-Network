@@ -16,7 +16,7 @@ export const setUserData = (userId, email, login) =>
 
 /**
  * ThunkCreator
- * @return {(function(dispatch, getState): void)} thunk, which send request to get current auth info
+ * @return {(function(dispatch, getState): void)} - thunk, which send request to get current auth info
  */
 export const authMe = () => {
     return (dispatch, getState) => {

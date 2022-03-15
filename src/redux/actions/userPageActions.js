@@ -18,7 +18,7 @@ export const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching
  * ThunkCreator
  * @param {number} currentPage
  * @param {number} pageSize
- * @return {(function(dispatch, getState): void)} thunk, which load users from server
+ * @return {(function(dispatch, getState): void)} - thunk, which load users from server
  */
 export const getUsers = (currentPage, pageSize) => {
     return (dispatch, getState) => {

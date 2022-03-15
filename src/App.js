@@ -13,6 +13,8 @@ import './App.css';
 
 
 const App = () => {
+    console.log("App Loading");
+
     return (
         <div className="app-wrapper">
             <Header/>

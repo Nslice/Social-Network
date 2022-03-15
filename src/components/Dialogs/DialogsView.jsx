@@ -10,11 +10,11 @@ import css from "./DialogsView.module.css";
 
 
 export const DialogsView = (props) => {
-    const textMessageElement = React.createRef();
+    const textMessageElement = React.createRef(); // почему не useRef
     const [isError, setIsError] = React.useState(false);
 
 
-    const onSendMessageClick = () => {
+    const onSendMessageClick = (e) => { // TODO: чекнуть арг
         setIsError(false);
         const text = textMessageElement.current.value;
         if (!text) {
