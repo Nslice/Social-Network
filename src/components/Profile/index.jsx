@@ -12,11 +12,13 @@ import {MyPosts} from "./MyPosts"
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
+        console.log("ProfileContainer componentDidMount");
         if (this.props.params.profileId !== this.props.profile?.userId)
             this.props.loadUserProfile(this.props.params.profileId);
     }
 
     componentWillUnmount() {
+        console.log("ProfileContainer unmount");
         this.props.setUserProfile(null);
     }
 

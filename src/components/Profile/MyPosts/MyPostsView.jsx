@@ -25,7 +25,7 @@ export const MyPostsView = (props) => {
     };
 
     const onPostChange = (e) => {
-        let text = e.target.value;
+        const text = e.target.value;
         props.updateNewPostText(text);
     };
 
